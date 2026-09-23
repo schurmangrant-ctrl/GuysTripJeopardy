@@ -6,6 +6,17 @@
   const MAX_TEAMS = 6;
   const NUM_CATEGORIES = 6;
   const NUM_ROWS = 5;
+  const CLUE_VALUES = [200, 400, 600, 800, 1000];
+
+  // Picks one random clue variant per difficulty tier so replaying the
+  // same category still feels fresh.
+  function buildCategoryInstance(poolCategory) {
+    const clues = poolCategory.tiers.map((tierOptions, i) => {
+      const chosen = tierOptions[Math.floor(Math.random() * tierOptions.length)];
+      return { value: CLUE_VALUES[i], clue: chosen.clue, answer: chosen.answer };
+    });
+    return { title: poolCategory.title, clues };
+  }
 
   // ---------------------------------------------------------------
   // State
@@ -187,7 +198,7 @@
   });
 
   btnToBoard.addEventListener("click", () => {
-    selectedCategories = draftPicks.map((p) => shuffledPool[p.poolIndex]);
+    selectedCategories = draftPicks.map((p) => buildCategoryInstance(shuffledPool[p.poolIndex]));
     initBoard();
     showScreen("screen-board");
   });
