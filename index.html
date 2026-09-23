@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guys Trip Jeopardy</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== SETUP SCREEN ===================== -->
+<section id="screen-setup" class="screen active">
+  <div class="setup-wrap">
+    <h1 class="title-logo">GUYS TRIP <span>JEOPARDY</span></h1>
+    <p class="subtitle">Set up your teams to get started</p>
+
+    <div class="setup-card">
+      <label for="team-count">Number of Teams</label>
+      <div class="team-count-row">
+        <button type="button" class="btn-round" id="team-count-minus">−</button>
+        <span id="team-count-display">3</span>
+        <button type="button" class="btn-round" id="team-count-plus">+</button>
+      </div>
+
+      <div id="team-name-list" class="team-name-list"></div>
+
+      <button type="button" id="btn-to-draft" class="btn-primary">Next: Draft Categories →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DRAFT SCREEN ===================== -->
+<section id="screen-draft" class="screen">
+  <div class="draft-header">
+    <h2>Draft Your Categories</h2>
+    <div class="draft-status">
+      <span id="draft-turn-indicator" class="draft-turn"></span>
+      <span id="draft-progress" class="draft-progress"></span>
+    </div>
+    <button type="button" id="btn-undo-draft" class="btn-secondary btn-small">↶ Undo Pick</button>
+  </div>
+
+  <div id="draft-pool" class="draft-pool"></div>
+
+  <div class="draft-footer">
+    <div id="draft-picked-list" class="draft-picked-list"></div>
+    <button type="button" id="btn-to-board" class="btn-primary" disabled>Start Game →</button>
+  </div>
+</section>
+
+<!-- ===================== BOARD SCREEN ===================== -->
+<section id="screen-board" class="screen">
+  <div id="scoreboard" class="scoreboard"></div>
+
+  <div class="board-toolbar">
+    <button type="button" id="btn-undo-clue" class="btn-secondary btn-small" disabled>↶ Undo Last Clue</button>
+  </div>
+
+  <div id="board-grid" class="board-grid"></div>
+</section>
+
+<!-- ===================== CLUE MODAL ===================== -->
+<div id="clue-modal" class="modal-overlay">
+  <div class="clue-modal-box">
+    <div class="clue-category" id="clue-category-label"></div>
+    <div class="clue-value" id="clue-value-label"></div>
+
+    <div class="clue-body">
+      <p id="clue-text" class="clue-text"></p>
+      <p id="clue-answer" class="clue-answer hidden"></p>
+    </div>
+
+    <div class="clue-actions">
+      <button type="button" id="btn-reveal" class="btn-primary btn-large">Reveal Answer</button>
+
+      <div id="clue-resolve-actions" class="clue-resolve-actions hidden">
+        <button type="button" id="btn-award" class="btn-success">✓ Award Points</button>
+        <button type="button" id="btn-deduct" class="btn-danger">✗ Deduct Points</button>
+        <button type="button" id="btn-skip" class="btn-secondary">No Score / Skip</button>
+      </div>
+
+      <div id="clue-team-select" class="clue-team-select hidden">
+        <p class="team-select-prompt" id="team-select-prompt">Which team?</p>
+        <div id="team-select-buttons" class="team-select-buttons"></div>
+        <button type="button" id="btn-back-to-resolve" class="btn-secondary btn-small">← Back</button>
+      </div>
+    </div>
+
+    <button type="button" id="btn-cancel-clue" class="btn-close">Cancel</button>
+  </div>
+</div>
+
+<!-- ===================== GAME OVER SCREEN ===================== -->
+<section id="screen-gameover" class="screen">
+  <div class="gameover-wrap">
+    <h1 class="gameover-title">🏆 Game Over 🏆</h1>
+    <div id="final-scores" class="final-scores"></div>
+    <button type="button" id="btn-new-game" class="btn-primary">Start New Game</button>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
